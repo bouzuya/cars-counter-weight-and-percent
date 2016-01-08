@@ -1,0 +1,38 @@
+{
+  "name": "cars-counter-weight-and-percent",
+  "description": "cars-counter-weight-and-percent",
+  "version": "0.0.0",
+  "author": {
+    "name": "bouzuya",
+    "email": "m@bouzuya.net",
+    "url": "http://bouzuya.net"
+  },
+  "bugs": {
+    "url": "https://github.com/bouzuya/cars-counter-weight-and-percent/issues"
+  },
+  "dependencies": {
+    "moment": "2.11.0",
+    "node-fetch": "1.3.3",
+    "twitter": "1.2.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13",
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.5"
+  },
+  "homepage": "https://github.com/bouzuya/cars-counter-weight-and-percent#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bouzuya/cars-counter-weight-and-percent"
+  },
+  "scripts": {
+    "build": "npm run tsd && tsc && babel --presets es2015 --out-dir lib/ tmp/",
+    "clean": "rm -rf lib/ tmp/",
+    "start": "npm run clean && npm run build && node examples/index.js",
+    "tsd": "tsd reinstall"
+  }
+}
