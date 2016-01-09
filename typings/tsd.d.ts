@@ -513,3 +513,12 @@ declare module 'twitter' {
     ): void;
   }
 }
+
+declare type Tweet = {
+  id: number;
+  id_str: string;
+  created_at: string;
+  text: string;
+};
+declare type UserId = string;
+declare type TweetId = string;
