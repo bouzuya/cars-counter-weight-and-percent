@@ -17,13 +17,13 @@ const getUserTimelineRecursive = (
   })
   .then((tweets: Array<Tweet>) => {
     const d = (s: string) => moment(Date.parse(s));
-    const since = moment(until).startOf('day');
-    const m = tweets.filter(i => d(i.created_at).isBetween(since, until));
+    const since = moment(until).endOf('day');
+    const m = tweets.filter(i => d(i.created_at).isBetween(until, since));
     const r = (result ? result : []).concat(m);
     if (
       tweets.length === 0 ||
       tweets.length === 1 || // maxId only
-      tweets.some(i => d(i.created_at).isAfter(until))
+      tweets.some(i => d(i.created_at).isBefore(until))
     ) return r;
     const newMaxId = tweets[tweets.length - 1].id_str;
     return getUserTimelineRecursive(twitter, userId, until, r, newMaxId);
@@ -38,6 +38,6 @@ export default (): Promise<Array<Tweet>> => {
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   });
   const userId = '125962981'; // bouzuya
-  const until = moment().subtract(1, 'day').endOf('day');
+  const until = moment().subtract(1, 'day').startOf('day');
   return getUserTimelineRecursive(twitter, userId, until);
 };
